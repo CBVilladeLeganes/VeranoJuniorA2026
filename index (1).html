@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pretemporada Verano · Junior A · CB Villa de Leganés</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111014;
+  --paper:#f5f3ee;
+  --court:#c9622a;      /* naranja parqué */
+  --line:#1c1b1f;
+  --red:#D20C1E;        /* rojo club */
+  --muted:#6b6862;
+  --soft:#e7e3d9;
+  --w1:#7c9c6b; --w2:#b8a63f; --w3:#c9862a; --w4:#c0561f; --w5:#a4231b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{border-bottom:3px solid var(--line);padding:64px 0 40px;position:relative;overflow:hidden}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:14px;color:var(--red)}
+.hero h1{font-family:'Anton',sans-serif;font-weight:400;line-height:.92;text-transform:uppercase;font-size:clamp(52px,12vw,132px);letter-spacing:-.01em;margin:12px 0 4px}
+.hero h1 .thin{-webkit-text-stroke:2px var(--line);color:transparent}
+.hero .sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(18px,2.4vw,26px);text-transform:uppercase;letter-spacing:.02em;color:var(--muted)}
+.dates{display:flex;flex-wrap:wrap;gap:24px;margin-top:28px}
+.date-box{border:2px solid var(--line);padding:12px 18px;background:var(--paper)}
+.date-box .lab{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.date-box .val{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase}
+
+/* INTRO */
+.intro{padding:48px 0;border-bottom:1px solid var(--soft)}
+.intro-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.intro h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.16em;color:var(--red);margin-bottom:16px}
+.intro p{font-size:17px;color:#2a2925;margin-bottom:14px;max-width:46ch}
+.rules{background:var(--ink);color:var(--paper);padding:26px 28px}
+.rules h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--court);margin-bottom:14px}
+.rules ul{list-style:none}
+.rules li{font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:16px;padding:8px 0;border-bottom:1px solid #2c2b2f;display:flex;gap:12px;align-items:baseline}
+.rules li:last-child{border:0}
+.rules li b{color:var(--court);font-weight:700}
+
+/* PROGRESS BAR */
+.progress{padding:40px 0 8px}
+.progress-track{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:14px}
+.progress-track .seg{height:10px}
+.progress-cap{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.1em;color:var(--muted);display:flex;justify-content:space-between;margin-top:10px}
+
+/* WEEKS */
+.weeks{padding:8px 0 24px}
+.week{border-top:3px solid var(--line);padding:38px 0}
+.week-head{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin-bottom:26px}
+.week-num{font-family:'Anton',sans-serif;font-size:clamp(64px,10vw,104px);line-height:.8;color:transparent;-webkit-text-stroke:2.5px var(--line)}
+.week-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase}
+.week-title .kicker{font-size:13px;letter-spacing:.16em;color:var(--red);display:block}
+.week-title .name{font-size:clamp(24px,4vw,38px);line-height:1;letter-spacing:.01em}
+.week-title .dates-mini{font-family:'Inter',sans-serif;font-weight:500;font-size:14px;text-transform:none;letter-spacing:0;color:var(--muted);margin-top:4px}
+.intensity{text-align:right}
+.intensity .lab{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.dots{display:flex;gap:5px;justify-content:flex-end;margin-top:6px}
+.dot{width:14px;height:14px;border:2px solid var(--line);border-radius:50%}
+.dot.on{background:var(--line)}
+
+.days{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.day{border:2px solid var(--line);background:var(--paper)}
+.day-top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:2px solid var(--line)}
+.day-top .d{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase}
+.day-top .tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em;padding:3px 9px;border:1.5px solid var(--line)}
+.day-top .tags{display:flex;gap:6px;align-items:center}
+.tag.shot{background:var(--red);color:#fff;border-color:var(--red)}
+.block.shotblock .bt{color:var(--red)}
+.block.shotblock li::before{background:var(--line)}
+.noshot{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--muted);padding:2px 0 0 16px;position:relative}
+.noshot::before{content:"—";position:absolute;left:0;color:var(--muted)}
+.day-body{padding:14px 16px}
+.block{margin-bottom:12px}
+.block:last-child{margin:0}
+.block .bt{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:var(--court);margin-bottom:3px}
+.block ul{list-style:none}
+.block li{font-size:14.5px;color:#2a2925;padding:2px 0;padding-left:16px;position:relative}
+.block li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--red)}
+.rest{grid-column:1/-1;border:2px dashed var(--muted);padding:14px 16px;text-align:center;background:transparent}
+.rest .d{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:15px}
+.hoops{grid-column:1/-1;background:var(--red);color:#fff;padding:16px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.hoops .icon{font-family:'Anton',sans-serif;font-size:34px;line-height:1}
+.hoops .txt b{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:17px;display:block}
+.hoops .txt span{font-size:14px;opacity:.92}
+
+/* AVISO */
+.notice{border-top:3px solid var(--line);padding:44px 0}
+.notice-box{background:var(--ink);color:var(--paper);padding:32px 34px;position:relative;border-left:8px solid var(--red)}
+.notice-box .tag-n{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:13px;color:var(--court)}
+.notice-box h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(24px,4vw,38px);line-height:1;margin:8px 0 14px}
+.notice-box p{font-size:16.5px;color:#d8d4cb;max-width:64ch;margin-bottom:10px}
+.notice-box p:last-child{margin-bottom:0}
+.notice-box b{color:#fff}
+.notice-box .hl{color:var(--court);font-weight:600}
+
+/* LIBRARY */
+.library{border-top:3px solid var(--line);padding:48px 0}
+.library .lead{max-width:54ch;color:var(--muted);margin-bottom:4px;font-size:16px}
+.lib-h{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(30px,5vw,52px);line-height:.95;margin-bottom:14px}
+.lib-cat{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:13px;color:var(--muted);margin:30px 0 0;border-bottom:1px solid var(--soft);padding-bottom:6px}
+.lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.ex{border:2px solid var(--line);background:var(--paper);display:flex;flex-direction:column}
+.ex .art{background:var(--soft);border-bottom:2px solid var(--line);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ex .art svg{width:100%;height:100%;display:block}
+.ex .meta{padding:12px 14px}
+.ex .meta .cat{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--red)}
+.ex .meta h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:18px;line-height:1.05;margin:2px 0 5px}
+.ex .meta p{font-size:13.5px;color:#3a3833;line-height:1.4}
+.fig{stroke:var(--line);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.fig-fill{fill:var(--line)}
+.acc{stroke:var(--red);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.acc-fill{fill:var(--red)}
+.ground{stroke:var(--muted);stroke-width:4;stroke-dasharray:2 10;stroke-linecap:round}
+.motion{stroke:var(--red);stroke-width:4;stroke-linecap:round;stroke-dasharray:3 9;fill:none}
+
+/* STRETCH / FOOTER */
+.stretch{border-top:3px solid var(--line);padding:44px 0}
+.stretch h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(30px,5vw,52px);line-height:.95;margin-bottom:20px}
+.stretch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{border:2px solid var(--line);padding:18px}
+.scard .n{font-family:'Anton',sans-serif;color:var(--red);font-size:22px}
+.scard h4{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:700;font-size:16px;margin:4px 0 6px}
+.scard p{font-size:14px;color:var(--muted)}
+footer{background:var(--ink);color:var(--paper);padding:40px 0;margin-top:0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer .club{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px}
+footer .club span{color:var(--red)}
+footer .note{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.04em;color:#9b968c;max-width:44ch;text-transform:uppercase}
+
+@media(max-width:820px){
+  .intro-grid{grid-template-columns:1fr;gap:28px}
+  .days{grid-template-columns:1fr}
+  .week-head{grid-template-columns:1fr;gap:10px}
+  .intensity{text-align:left}.dots{justify-content:flex-start}
+  .stretch-grid{grid-template-columns:1fr}
+  .lib-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px) and (min-width:521px){
+  .lib-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:no-preference){
+  .week{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .week.in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CB Villa de Leganés · Junior A</div>
+    <h1>Verano<br><span class="thin">en juego</span></h1>
+    <div class="sub">Plan físico de pretemporada · 5 semanas</div>
+    <div class="dates">
+      <div class="date-box"><div class="lab">Arranca</div><div class="val">15 Jul</div></div>
+      <div class="date-box"><div class="lab">Última semana</div><div class="val">11–16 Ago</div></div>
+      <div class="date-box"><div class="lab">Vuelta a pista</div><div class="val">17 Ago</div></div>
+    </div>
+  </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <h2>Por qué esto importa</h2>
+      <p>Es muy importante que seamos lo más disciplinados posibles, y que, estemos donde estemos este verano, seamos capaces de sacarlo adelante. Pensad que la competición empieza el 24 de septiembre: eso son solo 5 semanas desde que arranca la pretemporada, así que ser los primeros en empezar a movernos será una ventaja a nuestro favor.</p>
+      <p>Es importante que sigamos el plan que hemos desarrollado y que seamos responsables, tanto para realizarlo como para saber parar en caso de molestias.</p>
+      <p>Sed también responsables con las horas: lo más recomendable es entrenar a primera hora de la mañana o a última de la tarde/noche, evitando las horas de más calor.</p>
+    </div>
+    <aside class="rules">
+      <h3>Normas y recomendaciones</h3>
+      <ul>
+        <li><b>·</b> Calienta siempre 8–10 min antes. Nunca en frío.</li>
+        <li><b>·</b> Estira al terminar cada sesión.</li>
+        <li><b>·</b> Bebe agua. En verano, más.</li>
+        <li><b>·</b> Si duele una articulación (no músculo), para.</li>
+        <li><b>·</b> 150 tiros libres en 3 de los 4 días de trabajo (van marcados).</li>
+        <li><b>·</b> Balón siempre que puedas. No pierdas el tacto.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="progress">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--muted)">Curva de intensidad</div>
+    <div class="progress-track">
+      <div class="seg" style="background:var(--w1)"></div>
+      <div class="seg" style="background:var(--w2)"></div>
+      <div class="seg" style="background:var(--w3)"></div>
+      <div class="seg" style="background:var(--w4)"></div>
+      <div class="seg" style="background:var(--w5)"></div>
+    </div>
+    <div class="progress-cap"><span>Reactivar</span><span>Competir</span></div>
+  </div>
+</section>
+
+<section class="weeks">
+  <div class="wrap">
+
+    <!-- SEMANA 1 -->
+    <article class="week">
+      <div class="week-head">
+        <div class="week-num">1</div>
+        <div class="week-title">
+          <span class="kicker">Reactivación</span>
+          <span class="name">Volver a movernos</span>
+          <span class="dates-mini">15 – 20 julio</span>
+        </div>
+        <div class="intensity">
+          <div class="lab">Intensidad</div>
+          <div class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <div class="day-top"><span class="d">Día 1</span><span class="tags"><span class="tag">Cardio suave</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Carrera / Bici</div><ul><li>20 min carrera continua muy suave o 30 min bici a ritmo cómodo</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Plancha 4×20 s</li><li>Crunch 4×15</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 2</span><span class="tags"><span class="tag">Fuerza base</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Musculación (autocarga)</div><ul><li>Sentadillas 3×12</li><li>Flexiones 3×8 (rodillas si hace falta)</li><li>Zancadas 3×10 por pierna</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Plancha lateral 3×15 s por lado</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 3</span><span class="tag">Cardio + movilidad</span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Cardio</div><ul><li>25 min carrera continua suave o bici</li></ul></div>
+            <div class="block"><div class="bt">Movilidad</div><ul><li>10 min de movilidad de tobillo y cadera</li></ul></div>
+            <div class="noshot">Hoy sin tiros</div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 4</span><span class="tags"><span class="tag">Full body</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Circuito ligero</div><ul><li>2 vueltas: 10 sentadillas · 8 flexiones · 20 s plancha · 15 abdominales</li><li>Descanso 1 min entre vueltas</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="rest"><span class="d">3 días de descanso</span></div>
+      </div>
+    </article>
+
+    <!-- SEMANA 2 -->
+    <article class="week">
+      <div class="week-head">
+        <div class="week-num">2</div>
+        <div class="week-title">
+          <span class="kicker">Construcción</span>
+          <span class="name">Poner base</span>
+          <span class="dates-mini">21 – 27 julio</span>
+        </div>
+        <div class="intensity">
+          <div class="lab">Intensidad</div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <div class="day-top"><span class="d">Día 1</span><span class="tags"><span class="tag">Cardio</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Carrera / Bici</div><ul><li>30 min carrera continua a ritmo cómodo o 40 min bici</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Plancha 4×30 s · Plancha lateral 4×20 s · Crunch 4×20</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 2</span><span class="tags"><span class="tag">Fuerza</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Musculación</div><ul><li>Sentadillas 4×12</li><li>Flexiones 4×10</li><li>Zancadas 3×12 por pierna</li><li>Puente de glúteo 3×15</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 3</span><span class="tag">Explosividad</span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Pliometría suave</div><ul><li>Saltos a dos pies 3×10</li><li>Saltos al escalón / bordillo 3×8</li><li>Skipping 3×20 s</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Mountain climbers 4×20 s</li></ul></div>
+            <div class="noshot">Hoy sin tiros</div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 4</span><span class="tags"><span class="tag">Cardio + core</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Cardio</div><ul><li>30 min carrera o bici, incluyendo 4×30 s a ritmo más vivo</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Circuito abdomen 3 vueltas: 20 crunch · 20 s plancha · 15 elevaciones de piernas</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="rest"><span class="d">3 días de descanso — estira también en los días libres</span></div>
+      </div>
+    </article>
+
+    <!-- SEMANA 3 -->
+    <article class="week">
+      <div class="week-head">
+        <div class="week-num">3</div>
+        <div class="week-title">
+          <span class="kicker">Carga</span>
+          <span class="name">Subir el listón</span>
+          <span class="dates-mini">28 julio – 3 agosto</span>
+        </div>
+        <div class="intensity">
+          <div class="lab">Intensidad</div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <div class="day-top"><span class="d">Día 1</span><span class="tags"><span class="tag">Cardio + series</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Carrera</div><ul><li>10 min suave + 6×1 min a ritmo fuerte (1 min andando entre series) + 5 min suave</li><li>Alternativa bici: mismo formato de intervalos</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 2</span><span class="tags"><span class="tag">Fuerza+</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Musculación</div><ul><li>Sentadilla búlgara 3×10 por pierna</li><li>Flexiones 4×12</li><li>Sentadillas 4×15</li><li>Puente a una pierna 3×10 por lado</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 3</span><span class="tag">Explosividad</span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Pliometría</div><ul><li>Saltos verticales máximos 4×6</li><li>Saltos laterales 3×10 por lado</li><li>Sprints 6×20 m (vuelta andando)</li></ul></div>
+            <div class="noshot">Hoy sin tiros</div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 4</span><span class="tags"><span class="tag">Full body + core</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Circuito</div><ul><li>3 vueltas: 15 sentadillas · 12 flexiones · 10 zancadas/pierna · 40 s plancha</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Elevaciones de piernas 4×15 · Plancha lateral 4×25 s</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="rest"><span class="d">3 días de descanso — si un músculo carga mucho, descarga con paseo suave</span></div>
+      </div>
+    </article>
+
+    <!-- SEMANA 4 -->
+    <article class="week">
+      <div class="week-head">
+        <div class="week-num">4</div>
+        <div class="week-title">
+          <span class="kicker">Intensidad</span>
+          <span class="name">Ritmo de pista</span>
+          <span class="dates-mini">4 – 10 agosto</span>
+        </div>
+        <div class="intensity">
+          <div class="lab">Intensidad</div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <div class="day-top"><span class="d">Día 1</span><span class="tags"><span class="tag">Intervalos</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Carrera</div><ul><li>10 min suave + 8×1 min fuerte (1 min trote) + 5 min suave</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Plancha 4×45 s · Russian twist 4×20</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 2</span><span class="tags"><span class="tag">Fuerza</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Musculación</div><ul><li>Sentadilla búlgara 4×10 por pierna</li><li>Flexiones diamante 3×10</li><li>Zancadas caminando 4×12/pierna</li><li>Puente a una pierna 3×12/lado</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 3</span><span class="tag">Explosividad+</span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Pliometría + velocidad</div><ul><li>Saltos al escalón alto 4×8</li><li>Salto amplio (broad jump) 4×5</li><li>Sprints 8×20 m</li><li>Cambios de dirección en "T" 4 repeticiones</li></ul></div>
+            <div class="noshot">Hoy sin tiros</div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 4</span><span class="tags"><span class="tag">Mixto</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Circuito exigente</div><ul><li>4 vueltas: 15 sentadillas salto · 12 flexiones · 20 mountain climbers · 30 s plancha</li></ul></div>
+            <div class="block"><div class="bt">Cardio final</div><ul><li>10 min carrera suave para bajar pulsaciones</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="rest"><span class="d">3 días de descanso — cuida el sueño, es donde se construye la forma</span></div>
+      </div>
+    </article>
+
+    <!-- SEMANA 5 -->
+    <article class="week">
+      <div class="week-head">
+        <div class="week-num">5</div>
+        <div class="week-title">
+          <span class="kicker">A punto</span>
+          <span class="name">Listos para el 17</span>
+          <span class="dates-mini">11 – 16 agosto</span>
+        </div>
+        <div class="intensity">
+          <div class="lab">Intensidad</div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+        </div>
+      </div>
+      <div class="days">
+        <div class="day">
+          <div class="day-top"><span class="d">Día 1</span><span class="tags"><span class="tag">Ritmo alto</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Carrera</div><ul><li>10 min suave + 10×30 s casi al máximo (30 s trote) + 5 min suave</li></ul></div>
+            <div class="block"><div class="bt">Core</div><ul><li>Plancha 4×50 s · Elevaciones de piernas 4×18</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 2</span><span class="tags"><span class="tag">Fuerza total</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Musculación</div><ul><li>Sentadilla con salto 4×10</li><li>Flexiones 4×15</li><li>Sentadilla búlgara 4×12/pierna</li><li>Puente a una pierna 3×15/lado</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 3</span><span class="tag">Explosividad máx</span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Baloncesto aplicado</div><ul><li>Saltos verticales máximos 5×5</li><li>Sprints 10×20 m con cambio de dirección</li><li>Suicidios (líneas) 4 repeticiones</li><li>Defensa en deslizamiento 4×20 s</li></ul></div>
+            <div class="noshot">Hoy sin tiros</div>
+          </div>
+        </div>
+        <div class="day">
+          <div class="day-top"><span class="d">Día 4</span><span class="tags"><span class="tag">Activación suave</span><span class="tag shot">150 tiros</span></span></div>
+          <div class="day-body">
+            <div class="block"><div class="bt">Bajar carga antes del 17</div><ul><li>20 min carrera suave</li><li>Movilidad completa 15 min</li><li>Nada de esfuerzo máximo: llegar fresco al primer entreno</li></ul></div>
+            <div class="block shotblock"><div class="bt">150 tiros libres</div></div>
+          </div>
+        </div>
+        <div class="rest"><span class="d">Descanso hasta el 17 de agosto — nos vemos en la pista</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="notice">
+  <div class="wrap">
+    <div class="notice-box">
+      <span class="tag-n">Importante · si te incorporas más tarde</span>
+      <h3>¿No puedes estar el 17?</h3>
+      <p>Si por lo que sea no puedes incorporarte a los entrenamientos el 17 de agosto, no dejes de trabajar. <b>Las semanas que no puedas venir, repite el trabajo de la Semana 5</b>, que es el nivel más cercano a lo que haremos en pista.</p>
+      <p class="hl">Así, cuando te reincorpores, llegarás al mismo punto físico que el resto del equipo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="library" id="ejercicios">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--muted)">Cómo se hace cada cosa</div>
+    <h2 class="lib-h">Biblioteca de<br>ejercicios</h2>
+    <p class="lead">Si dudas de la técnica de un ejercicio, míralo aquí antes de hacerlo. El punto en rojo marca dónde poner la atención. Hacerlo mal no suma, resta.</p>
+
+    <!-- FUERZA / PIERNA -->
+    <div class="lib-cat">Fuerza · Pierna</div>
+    <div class="lib-grid">
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sentadilla">
+            <line class="ground" x1="30" y1="136" x2="170" y2="136"/>
+            <!-- head -->
+            <circle class="fig-fill" cx="96" cy="26" r="11"/>
+            <!-- torso, upright with slight forward lean -->
+            <path class="fig" d="M96 37 L92 74"/>
+            <!-- arms extended forward -->
+            <path class="fig" d="M94 48 L128 52"/>
+            <!-- hips to knee (thigh ~horizontal) -->
+            <path class="fig" d="M92 74 L118 84"/>
+            <!-- knee accent -->
+            <circle class="acc-fill" cx="118" cy="84" r="6"/>
+            <!-- shin vertical to floor -->
+            <path class="acc" d="M118 84 L118 134"/>
+            <!-- foot -->
+            <path class="fig" d="M118 134 L134 134"/>
+            <!-- down motion arrow -->
+            <path class="motion" d="M74 58 L74 84"/>
+            <path class="motion" d="M69 78 L74 86 L79 78"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Sentadilla</div>
+          <h4>Sentadilla</h4>
+          <p>Baja como si te sentaras en una silla. Muslo paralelo al suelo, la rodilla no pasa la punta del pie, pecho arriba.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sentadilla búlgara">
+            <line class="ground" x1="20" y1="136" x2="180" y2="136"/>
+            <!-- bench at right -->
+            <rect class="fig-fill" x="150" y="104" width="30" height="7"/>
+            <line class="fig" x1="156" y1="111" x2="156" y2="134"/>
+            <line class="fig" x1="174" y1="111" x2="174" y2="134"/>
+            <!-- head -->
+            <circle class="fig-fill" cx="78" cy="30" r="11"/>
+            <!-- torso upright -->
+            <path class="fig" d="M78 41 L82 78"/>
+            <!-- front leg: thigh to knee, shin to floor -->
+            <path class="fig" d="M82 78 L86 104"/>
+            <circle class="acc-fill" cx="86" cy="104" r="6"/>
+            <path class="acc" d="M86 104 L86 134"/>
+            <path class="fig" d="M86 134 L100 134"/>
+            <!-- back leg reaching to bench -->
+            <path class="fig" d="M82 78 L120 100"/>
+            <path class="fig" d="M120 100 L152 108"/>
+            <!-- down motion -->
+            <path class="motion" d="M64 62 L64 88"/>
+            <path class="motion" d="M59 82 L64 90 L69 82"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Fuerza · unilateral</div>
+          <h4>Sentadilla búlgara</h4>
+          <p>Pie de atrás apoyado en un banco o silla. Baja con la pierna de delante, la rodilla en línea con el pie. Trabaja una pierna cada vez.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zancada">
+            <line class="ground" x1="20" y1="136" x2="180" y2="136"/>
+            <circle class="fig-fill" cx="98" cy="26" r="11"/>
+            <!-- upright torso -->
+            <path class="fig" d="M98 37 L98 76"/>
+            <!-- front leg: thigh forward-down, shin vertical -->
+            <path class="fig" d="M98 76 L126 100"/>
+            <circle class="acc-fill" cx="126" cy="100" r="6"/>
+            <path class="acc" d="M126 100 L126 134"/>
+            <path class="fig" d="M126 134 L140 134"/>
+            <!-- back leg: knee dropping toward floor -->
+            <path class="fig" d="M98 76 L76 108"/>
+            <path class="fig" d="M76 108 L84 130"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Fuerza · unilateral</div>
+          <h4>Zancada</h4>
+          <p>Paso largo al frente, bajas hasta que las dos rodillas hacen 90°. La de delante sobre el tobillo, la de atrás casi toca el suelo.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Puente de glúteo">
+            <line class="ground" x1="20" y1="130" x2="180" y2="130"/>
+            <!-- shoulders/head on floor -->
+            <circle class="fig-fill" cx="44" cy="118" r="10"/>
+            <!-- torso up the ramp to raised hips -->
+            <path class="fig" d="M54 118 L100 84"/>
+            <!-- raised hip (accent, the key point) -->
+            <circle class="acc-fill" cx="100" cy="84" r="7"/>
+            <!-- thigh down to knee -->
+            <path class="acc" d="M100 84 L128 108"/>
+            <!-- shin to floor + foot -->
+            <path class="fig" d="M128 108 L128 128"/>
+            <path class="fig" d="M128 128 L144 128"/>
+            <!-- lift motion arrow at hip -->
+            <path class="motion" d="M100 74 L100 56"/>
+            <path class="motion" d="M95 62 L100 54 L105 62"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Fuerza · glúteo</div>
+          <h4>Puente de glúteo</h4>
+          <p>Tumbado boca arriba, rodillas dobladas. Sube la cadera apretando el glúteo hasta hacer línea recta hombro-cadera-rodilla. Una pierna en la variante avanzada.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FUERZA / TREN SUPERIOR -->
+    <div class="lib-cat">Fuerza · Tren superior</div>
+    <div class="lib-grid">
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flexión">
+            <line class="ground" x1="18" y1="128" x2="182" y2="128"/>
+            <!-- head at front -->
+            <circle class="fig-fill" cx="158" cy="72" r="10"/>
+            <!-- straight body from shoulders to heels (accent = the key) -->
+            <path class="acc" d="M150 78 L40 108"/>
+            <!-- support arm down to floor -->
+            <path class="fig" d="M142 82 L138 126"/>
+            <path class="fig" d="M138 126 L150 126"/>
+            <!-- feet / toes -->
+            <path class="fig" d="M40 108 L30 126"/>
+            <!-- down motion arrow near chest -->
+            <path class="motion" d="M150 92 L150 116"/>
+            <path class="motion" d="M145 110 L150 118 L155 110"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Fuerza · empuje</div>
+          <h4>Flexión</h4>
+          <p>Cuerpo recto de cabeza a talones, sin subir el culo ni hundir la cadera. Baja el pecho hacia el suelo, codos hacia atrás, no abiertos del todo.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flexión diamante">
+            <line class="ground" x1="18" y1="128" x2="182" y2="128"/>
+            <circle class="fig-fill" cx="158" cy="72" r="10"/>
+            <!-- straight body -->
+            <path class="fig" d="M150 78 L40 108"/>
+            <!-- hands together forming diamond (accent) -->
+            <path class="acc" d="M132 84 L120 126 L112 126 L128 86 Z"/>
+            <!-- feet -->
+            <path class="fig" d="M40 108 L30 126"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Fuerza · tríceps</div>
+          <h4>Flexión diamante</h4>
+          <p>Igual que la flexión, pero las manos juntas formando un rombo bajo el pecho. Carga más el tríceps. Si pesa mucho, apoya rodillas.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plancha">
+            <line class="ground" x1="18" y1="120" x2="182" y2="120"/>
+            <circle class="fig-fill" cx="150" cy="80" r="10"/>
+            <!-- straight body accent (the point of the exercise) -->
+            <path class="acc" d="M142 84 L64 108"/>
+            <!-- forearm down -->
+            <path class="fig" d="M120 92 L118 118 L104 118"/>
+            <!-- legs/toes -->
+            <path class="fig" d="M64 108 L48 118"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · isométrico</div>
+          <h4>Plancha</h4>
+          <p>Apoyo en antebrazos y puntas de los pies. Cuerpo como una tabla, aprieta abdomen y glúteo. Ni cadera arriba ni riñones hundidos.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CORE -->
+    <div class="lib-cat">Core · Abdomen</div>
+    <div class="lib-grid">
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plancha lateral">
+            <line class="ground" x1="18" y1="124" x2="182" y2="124"/>
+            <!-- side body diagonal -->
+            <circle class="fig-fill" cx="150" cy="58" r="10"/>
+            <path class="acc" d="M143 63 L60 118"/>
+            <!-- support forearm down -->
+            <path class="fig" d="M120 82 L118 122"/>
+            <!-- top arm up -->
+            <path class="fig" d="M126 76 L134 44"/>
+            <circle class="acc-fill" cx="118" cy="122" r="5"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · oblicuos</div>
+          <h4>Plancha lateral</h4>
+          <p>De lado, apoyo en un antebrazo. Sube la cadera hasta hacer línea recta. Aguanta sin caerte hacia delante. Cambia de lado.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Crunch">
+            <line class="ground" x1="18" y1="130" x2="182" y2="130"/>
+            <!-- glutes on floor, knees bent up -->
+            <path class="fig" d="M84 126 L120 126"/>
+            <!-- thigh up -->
+            <path class="fig" d="M120 126 L148 96"/>
+            <!-- shin down to foot -->
+            <path class="fig" d="M148 96 L150 126"/>
+            <!-- torso curled up off the floor (accent) -->
+            <path class="acc" d="M84 126 L66 100"/>
+            <!-- head -->
+            <circle class="fig-fill" cx="60" cy="92" r="10"/>
+            <!-- curl motion arc -->
+            <path class="motion" d="M50 120 Q52 100 62 94"/>
+            <path class="motion" d="M58 96 L62 92 L66 98"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · abdomen</div>
+          <h4>Crunch</h4>
+          <p>Tumbado, rodillas dobladas. Despega hombros y sube el pecho hacia las rodillas sin tirar del cuello. Movimiento corto y controlado.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevaciones de piernas">
+            <line class="ground" x1="18" y1="128" x2="182" y2="128"/>
+            <!-- head on floor at left -->
+            <circle class="fig-fill" cx="40" cy="114" r="10"/>
+            <!-- flat back/torso on floor -->
+            <path class="fig" d="M50 118 L104 118"/>
+            <!-- hip pivot -->
+            <circle class="acc-fill" cx="104" cy="118" r="6"/>
+            <!-- legs raised toward vertical (accent) -->
+            <path class="acc" d="M104 118 L118 54"/>
+            <!-- lift motion arc -->
+            <path class="motion" d="M150 116 Q150 78 128 60"/>
+            <path class="motion" d="M126 68 L127 58 L136 62"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · abdomen bajo</div>
+          <h4>Elevaciones de piernas</h4>
+          <p>Boca arriba, piernas rectas juntas. Súbelas hasta la vertical y baja sin tocar el suelo. Zona lumbar pegada al suelo todo el rato.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mountain climbers">
+            <line class="ground" x1="18" y1="122" x2="182" y2="122"/>
+            <circle class="fig-fill" cx="150" cy="74" r="10"/>
+            <path class="fig" d="M142 78 L70 104"/>
+            <!-- support arms -->
+            <path class="fig" d="M120 88 L118 120"/>
+            <path class="fig" d="M132 82 L134 120"/>
+            <!-- one knee driven forward (accent) -->
+            <path class="acc" d="M70 104 L96 108 L98 120"/>
+            <!-- back leg extended -->
+            <path class="fig" d="M70 104 L52 120"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · cardio</div>
+          <h4>Mountain climbers</h4>
+          <p>En posición de plancha alta, lleva una rodilla al pecho y cámbiala rápido, como corriendo en el sitio. Cadera baja, ritmo alto.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Russian twist">
+            <line class="ground" x1="18" y1="128" x2="182" y2="128"/>
+            <!-- seated V, leaning back -->
+            <circle class="fig-fill" cx="70" cy="52" r="10"/>
+            <path class="fig" d="M76 60 L104 96"/>
+            <!-- legs up -->
+            <path class="fig" d="M104 96 L146 78"/>
+            <!-- hands together rotating (accent) -->
+            <path class="acc" d="M84 74 L112 84"/>
+            <circle class="acc-fill" cx="112" cy="84" r="5"/>
+            <!-- rotation arc -->
+            <path class="motion" d="M92 68 Q112 60 128 74"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Core · oblicuos</div>
+          <h4>Russian twist</h4>
+          <p>Sentado, tronco atrás y pies en el aire. Gira el tronco tocando el suelo a un lado y al otro. La fuerza sale del abdomen, no de los brazos.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EXPLOSIVIDAD -->
+    <div class="lib-cat">Explosividad · Salto y velocidad</div>
+    <div class="lib-grid">
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Salto vertical">
+            <line class="ground" x1="20" y1="134" x2="180" y2="134"/>
+            <!-- airborne figure, arms up -->
+            <circle class="fig-fill" cx="100" cy="34" r="11"/>
+            <path class="fig" d="M100 45 L100 84"/>
+            <!-- arms up -->
+            <path class="acc" d="M100 54 L84 26"/>
+            <path class="acc" d="M100 54 L116 26"/>
+            <!-- legs slightly tucked -->
+            <path class="fig" d="M100 84 L86 108"/>
+            <path class="fig" d="M100 84 L114 108"/>
+            <!-- upward motion -->
+            <path class="motion" d="M100 132 L100 100"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Explosividad · salto</div>
+          <h4>Salto vertical</h4>
+          <p>Flexiona rodillas, brazos atrás, y salta hacia arriba lo más alto posible estirando los brazos. Aterriza suave, rodillas flexionadas.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Salto amplio">
+            <line class="ground" x1="18" y1="134" x2="182" y2="134"/>
+            <!-- take-off crouch (grey/black) -->
+            <circle class="fig-fill" cx="46" cy="60" r="9"/>
+            <path class="fig" d="M46 69 L52 92"/>
+            <path class="fig" d="M50 76 L30 82"/>
+            <path class="fig" d="M52 92 L48 116"/>
+            <path class="fig" d="M52 92 L62 116"/>
+            <!-- forward jump arc -->
+            <path class="motion" d="M60 96 Q108 46 148 96"/>
+            <path class="motion" d="M142 88 L149 98 L138 100"/>
+            <!-- landing figure (red) -->
+            <circle class="acc-fill" cx="150" cy="66" r="9"/>
+            <path class="acc" d="M150 75 L150 98"/>
+            <path class="acc" d="M150 98 L140 120"/>
+            <path class="acc" d="M150 98 L162 120"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Explosividad · horizontal</div>
+          <h4>Salto amplio (broad jump)</h4>
+          <p>Salto hacia delante desde parado, buscando distancia. Brazos acompañan el impulso. Cae con las dos piernas y absorbe flexionando.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sprint">
+            <line class="ground" x1="18" y1="132" x2="182" y2="132"/>
+            <!-- running figure leaning forward -->
+            <circle class="fig-fill" cx="118" cy="40" r="11"/>
+            <path class="fig" d="M116 51 L96 86"/>
+            <!-- driving arm -->
+            <path class="acc" d="M108 64 L132 56"/>
+            <path class="fig" d="M108 64 L84 72"/>
+            <!-- front knee high -->
+            <path class="acc" d="M96 86 L118 92 L120 116"/>
+            <!-- back leg extended -->
+            <path class="fig" d="M96 86 L72 110"/>
+            <!-- speed lines -->
+            <path class="motion" d="M40 60 L66 60"/>
+            <path class="motion" d="M34 78 L60 78"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Velocidad</div>
+          <h4>Sprint corto (20 m)</h4>
+          <p>Salida explosiva, tronco algo inclinado, rodillas altas y brazos activos. Corre al máximo la distancia y vuelve andando para recuperar.</p>
+        </div>
+      </div>
+
+      <div class="ex">
+        <div class="art">
+          <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Defensa en deslizamiento">
+            <line class="ground" x1="18" y1="132" x2="182" y2="132"/>
+            <!-- wide defensive stance -->
+            <circle class="fig-fill" cx="100" cy="40" r="11"/>
+            <path class="fig" d="M100 51 L100 82"/>
+            <!-- arms wide -->
+            <path class="acc" d="M100 60 L72 52"/>
+            <path class="acc" d="M100 60 L128 52"/>
+            <!-- wide low legs -->
+            <path class="fig" d="M100 82 L74 118"/>
+            <path class="fig" d="M100 82 L126 118"/>
+            <!-- slide motion -->
+            <path class="motion" d="M60 128 L84 128"/>
+            <path class="motion" d="M116 128 L140 128"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="cat">Baloncesto · defensa</div>
+          <h4>Defensa en deslizamiento</h4>
+          <p>Posición baja, piernas anchas, brazos abiertos. Desplázate lateralmente sin cruzar los pies ni juntarlos. Culo abajo todo el rato.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="stretch">
+  <div class="wrap">
+    <h2>Estirar no es<br>perder el tiempo</h2>
+    <p style="max-width:52ch;color:var(--muted);margin-bottom:26px;font-size:16px">Al terminar cada sesión, dedica 8–10 minutos a estos estiramientos. Mantén cada uno 25–30 segundos, sin rebotes, respirando. Es lo que evita que llegues cargado y lesionado en agosto.</p>
+    <div class="stretch-grid">
+      <div class="scard"><div class="n">01</div><h4>Tren inferior</h4><p>Cuádriceps, isquios, gemelo y aductores. Prioridad tras carrera, sprints y saltos.</p></div>
+      <div class="scard"><div class="n">02</div><h4>Cadera y glúteo</h4><p>Estiramiento de glúteo tumbado y flexor de cadera. Clave para proteger la espalda.</p></div>
+      <div class="scard"><div class="n">03</div><h4>Tren superior</h4><p>Hombro, pecho y tríceps. Sobre todo los días de flexiones y de tiro.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="club">CB Villa de <span>Leganés</span> · Junior A</div>
+    <div class="note">Cualquier duda con un ejercicio, pregunta antes de hacerlo mal.</div>
+  </div>
+</footer>
+
+<script>
+if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.week').forEach(w=>obs.observe(w));
+}
+</script>
+
+</body>
+</html>
